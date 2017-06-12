@@ -1,69 +1,50 @@
 #include <SFML/Graphics.hpp>
+#include "Frog.h"
+#include "Truck.h"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(640, 480), "SFML Starter Template");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Frogger");
 
-    sf::RectangleShape frog;
-
-    
-
-
-    sf::RectangleShape truck;
-
-    truck.setSize(sf::Vector2f(120, 60));
-    truck.setFillColor(sf::Color::Red);
-    truck.setPosition(sf::Vector2f(truck.getPosition().x, window.getSize().y / 2 - truck.getSize().y));
+	Frog frog(window.getSize());
+	Truck truck(0, window.getSize().y / 2);
 
     while (window.isOpen())
     {
-        // handle events
+        // input
         sf::Event event;
 
         while (window.pollEvent(event))
         {
-            switch (event.type)
-            {
-            case sf::Event::KeyReleased:
-
-                if (sf::Keyboard::Key::Left == event.key.code)
-                {
-                    frog.move(-80, 0);
-                }
-                else if (sf::Keyboard::Key::Right == event.key.code)
-                {
-                    frog.move(80, 0);
-                }
-                else if (sf::Keyboard::Key::Up == event.key.code)
-                {
-                    frog.move(0, -80);
-                }
-                else if (sf::Keyboard::Key::Down == event.key.code)
-                {
-                    frog.move(0, 80);
-                }
-            }
+            switch (event.type) 
+			{
+			case sf::Event::Closed:
+				window.close();
+			case sf::Event::KeyReleased:
+				if (sf::Keyboard::Key::Escape == event.key.code) 
+				{
+					window.close();
+				}
+				else 
+				{
+					frog.move(event);
+				}
+				break;				
+			}
         }
 
         // update
-        truck.move(0.2, 0);
+		truck.move(window.getSize());
 
-        if (truck.getPosition().x > window.getSize().x)
-        {
-            truck.setPosition(sf::Vector2f(-truck.getSize().x, window.getSize().y / 2 - truck.getSize().y));
-        }
-
-        if (frog.getGlobalBounds().intersects(truck.getGlobalBounds()))
+        if (frog.getShape().getGlobalBounds().intersects(truck.getShape().getGlobalBounds()))
         {
             window.close();
         }
 
-        window.clear();
-
-        // draw SFML content
-        
-        window.draw(truck);
-
+		// draw
+        window.clear();       
+		truck.draw(window);
+		frog.draw(window);
         window.display();
     }
 

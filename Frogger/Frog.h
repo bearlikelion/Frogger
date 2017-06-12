@@ -8,8 +8,8 @@ private:
 public:
     Frog(sf::Vector2u size);
     
-    void Draw(sf::RenderWindow &window);
-    void Move(sf::Event event);
+    void draw(sf::RenderWindow &window);
+    void move(sf::Event event);
 
     sf::RectangleShape getShape();
 };
