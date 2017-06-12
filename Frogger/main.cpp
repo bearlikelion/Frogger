@@ -6,8 +6,7 @@ int main()
 
     sf::RectangleShape frog;
 
-    frog.setSize(sf::Vector2f(80, 80));
-    frog.setPosition(sf::Vector2f(frog.getPosition().x, window.getSize().y - frog.getSize().y));
+    
 
 
     sf::RectangleShape truck;
@@ -62,7 +61,7 @@ int main()
         window.clear();
 
         // draw SFML content
-        window.draw(frog);
+        
         window.draw(truck);
 
         window.display();
