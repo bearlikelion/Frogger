@@ -8,7 +8,7 @@ Game::Game()
     
 }
 
-void Game::Loop()
+void Game::run()
 {
     while (window->isOpen())
     {

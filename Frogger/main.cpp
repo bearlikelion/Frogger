@@ -2,9 +2,7 @@
 
 int main()
 {
-    Game game;
-
-    game.Loop();
-
+    Game frogger;
+    frogger.run();
     return 0;
 }

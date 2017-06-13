@@ -11,8 +11,7 @@ private:
     Frog *frog;
     Truck *truck;
 public:
-    Game();
-    
-    void Loop();
+    Game();   
+    void run();
 };
 
