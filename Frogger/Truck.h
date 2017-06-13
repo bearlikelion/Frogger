@@ -1,17 +1,11 @@
 #pragma once
-#include <SFML\Graphics.hpp>
 
-class Truck
+#include "BaseObject.h"
+
+class Truck : public BaseObject
 {
-private:
-	sf::RectangleShape truck;
-	float originalPosX, originalPosY;
 public:
-	Truck(float posX, float posY);
-
-	void draw(sf::RenderWindow &window);
+	Truck(float posX, float posY);	
 	void move(sf::Vector2u size);
-
-	sf::RectangleShape getShape();
 };
 

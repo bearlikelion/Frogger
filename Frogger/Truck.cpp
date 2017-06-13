@@ -1,33 +1,21 @@
 #include "Truck.h"
 
-sf::RectangleShape truck;
-
 Truck::Truck(float posX, float posY)
 {
-	truck.setSize(sf::Vector2f(120, 60));
-	truck.setFillColor(sf::Color::Red);
-	truck.setPosition(sf::Vector2f(posX, posY));
+    shape.setSize(sf::Vector2f(120, 60));
+    shape.setFillColor(sf::Color::Red);
+    shape.setPosition(sf::Vector2f(posX, posY));
 
-	originalPosX = posX;
-	originalPosY = posY;
-}
-
-void Truck::draw(sf::RenderWindow &window)
-{
-	window.draw(truck);	
+    originalPosX = posX;
+    originalPosY = posY;
 }
 
 void Truck::move(sf::Vector2u size)
 {
-	truck.move(0.2, 0);
+    shape.move(float(0.2), 0);
 
-	if (truck.getPosition().x > size.x)
-	{
-        truck.setPosition(sf::Vector2f(0 - truck.getSize().x, originalPosY));
-	}
-}
-
-sf::RectangleShape Truck::getShape()
-{
-	return truck;
+    if (shape.getPosition().x > size.x)
+    {
+        shape.setPosition(sf::Vector2f(0 - shape.getSize().x, originalPosY));
+    }
 }
