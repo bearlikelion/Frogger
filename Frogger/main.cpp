@@ -1,5 +1,7 @@
 #include "Game.h"
 
+using namespace FG; // FROG GAME
+
 int main()
 {
     Game frogger;

@@ -1,11 +1,13 @@
 #pragma once
 
-#include "BaseObject.h"
+#include "Entity.h"
 
-class Truck : public BaseObject
+namespace FG
 {
-public:
-	Truck(float posX, float posY);	
-	void move(sf::Vector2u size);
-};
-
+    class Truck : public Entity
+    {
+    public:
+        Truck(float posX, float posY);
+        void move(sf::Vector2u size);
+    };
+}

@@ -1,12 +1,13 @@
 #pragma once
 
-#include "BaseObject.h"
-#include "DEFINITIONS.h"
+#include "Entity.h"
 
-class Frog : public BaseObject
+namespace FG
 {
-public:
-    Frog(sf::Vector2u size);
-    void move(sf::Event event);
-};
-
+    class Frog : public Entity
+    {
+    public:
+        Frog(sf::Vector2u size);
+        void move(sf::Event event);
+    };
+}
