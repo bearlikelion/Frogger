@@ -4,7 +4,8 @@ Game::Game()
 {    
     window = new sf::RenderWindow(sf::VideoMode(800, 600), "Frogger");
     frog = new Frog(window->getSize());
-    truck = new Truck(0, window->getSize().y / 2);    
+    truck = new Truck(0, float(window->getSize().y / 2));    
+    
 }
 
 void Game::Loop()
