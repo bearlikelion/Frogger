@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BaseObject.h"
+#include "DEFINITIONS.h"
 
 class Frog : public BaseObject
 {

@@ -1,6 +1,5 @@
 #pragma once
 
-#include <SFML\Graphics.hpp>
 #include "Frog.h"
 #include "Truck.h"
 
@@ -11,7 +10,10 @@ private:
     Frog *frog;
     Truck *truck;
 public:
-    Game();   
+    Game();       
+    void input();
+    void update();
+    void draw();
     void run();
 };
 

@@ -1,4 +1,5 @@
 #include "Truck.h"
+#include "DEFINITIONS.h"
 
 Truck::Truck(float posX, float posY)
 {
@@ -12,7 +13,7 @@ Truck::Truck(float posX, float posY)
 
 void Truck::move(sf::Vector2u size)
 {
-    shape.move(float(0.2), 0);
+    shape.move(float(TRUCK_SPEED), 0);
 
     if (shape.getPosition().x > size.x)
     {
