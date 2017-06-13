@@ -23,7 +23,7 @@ void Truck::move(sf::Vector2u size)
 
 	if (truck.getPosition().x > size.x)
 	{
-		truck.setPosition(sf::Vector2f(-truck.getSize().x, size.y / 2 - truck.getSize().y));
+        truck.setPosition(sf::Vector2f(0 - truck.getSize().x, originalPosY));
 	}
 }
 

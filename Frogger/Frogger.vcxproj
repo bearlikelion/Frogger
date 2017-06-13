@@ -121,11 +121,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Frog.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Truck.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Frog.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Truck.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
