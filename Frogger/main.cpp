@@ -1,3 +1,8 @@
+/**
+    Frogger Game
+    main.cpp entry point
+*/
+
 #include "Game.h"
 
 using namespace FG; // FROG GAME

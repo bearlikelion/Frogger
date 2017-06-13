@@ -1,5 +1,4 @@
 #include "Truck.h"
-#include "DEFINITIONS.h"
 
 namespace FG
 {
@@ -14,7 +13,7 @@ namespace FG
     }
 
     void Truck::move(sf::Vector2u size)
-    {
+    {        
         shape.move(float(TRUCK_SPEED), 0);
 
         if (shape.getPosition().x > size.x)
