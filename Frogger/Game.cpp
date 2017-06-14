@@ -7,8 +7,12 @@ namespace FG
         window = new RenderWindow(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
         FrameTime frameSlice = 1.0f, frameStep = 1.0f, lastFrameTime = 0.0f, currentSlice = 0.0f;
 
-        frog = new Frog(window->getSize());
+        bool died = false;
+
+        frog = new Frog(Vector2f(window->getSize()));
+        // TODO: MULTIPLE TRUCKS
         truck = new Truck(0, float(window->getSize().y / 2));
+        truck2 = new Truck(0, float(window->getSize().y / 2) - FROG_SIZE);
     }
 
     // input
@@ -29,7 +33,7 @@ namespace FG
                 }
                 else
                 {
-                    frog->move(event);
+                    frog->update(event);
                 }
                 break;
             }
@@ -43,12 +47,23 @@ namespace FG
         for (; currentSlice >= frameSlice; currentSlice--)
         {            
             truck->move(window->getSize());
+            truck2->move(window->getSize());
 
             // TODO: Collision class
             if (frog->getShape().getGlobalBounds().intersects(truck->getShape().getGlobalBounds()))
             {
-                // TODO: Move frog to originalPOS on collision
-                window->close();
+                died = true;
+                frog->reset();
+            }
+            else if (frog->getShape().getGlobalBounds().intersects(truck2->getShape().getGlobalBounds()))
+            {
+                died = true;
+                frog->reset();
+            }
+            else if (frog->getShape().getPosition().y < 0) 
+            {
+                // TODO: WIN STATE
+                frog->reset();
             }
         }        
     }
@@ -57,8 +72,22 @@ namespace FG
     void Game::draw()
     {
         window->clear();
+       
+        if (died == true)
+        {
+            Clock deadClock;
+            if (deadClock.getElapsedTime().asSeconds() <= DEAD_TIME)
+            {
+                frog->splat(*window);
+            }
+            else 
+            {
+                died = false;
+            }
+        }        
 
         truck->draw(*window);
+        truck2->draw(*window);
         frog->draw(*window);
 
         window->display();

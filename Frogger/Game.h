@@ -20,6 +20,8 @@ namespace FG
         RenderWindow *window;
         Frog *frog;
         Truck *truck;
+        Truck *truck2;
+        bool died;
         FrameTime frameStep, frameSlice, lastFrameTime, currentSlice;        
     public:
         Game();

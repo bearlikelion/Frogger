@@ -2,6 +2,7 @@
 
 namespace FG
 {
+    // TODO: Multiple trucks in one constructor
     Truck::Truck(float posX, float posY)
     {
         shape.setSize(sf::Vector2f(120, 60));
