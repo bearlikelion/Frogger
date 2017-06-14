@@ -8,6 +8,7 @@ namespace FG
         FrameTime frameSlice = 1.0f, frameStep = 1.0f, lastFrameTime = 0.0f, currentSlice = 0.0f;
 
         bool died = false;
+		Clock deadClock;
 
         frog = new Frog(Vector2f(window->getSize()));
         // TODO: MULTIPLE TRUCKS
@@ -52,11 +53,13 @@ namespace FG
             // TODO: Collision class
             if (frog->getShape().getGlobalBounds().intersects(truck->getShape().getGlobalBounds()))
             {
+				deadClock.restart();
                 died = true;
                 frog->reset();
             }
             else if (frog->getShape().getGlobalBounds().intersects(truck2->getShape().getGlobalBounds()))
             {
+				deadClock.restart();
                 died = true;
                 frog->reset();
             }
@@ -71,24 +74,27 @@ namespace FG
     // draw
     void Game::draw()
     {
-        window->clear();
-       
-        if (died == true)
-        {
-            Clock deadClock;
-            if (deadClock.getElapsedTime().asSeconds() <= DEAD_TIME)
-            {
-                frog->splat(*window);
-            }
-            else 
-            {
-                died = false;
-            }
-        }        
+        window->clear();            
 
         truck->draw(*window);
-        truck2->draw(*window);
-        frog->draw(*window);
+        truck2->draw(*window);        
+
+		if (died == true)
+		{									
+			if (deadClock.getElapsedTime().asSeconds() <= DEAD_TIME)
+			{
+				cout << to_string(deadClock.getElapsedTime().asSeconds()) << endl;
+				frog->splat(*window);
+			}
+			else
+			{				
+				died = false;				
+			}
+		}
+		else
+		{
+			frog->draw(*window);
+		}
 
         window->display();
     }
@@ -112,7 +118,7 @@ namespace FG
             lastFrameTime = ft;
             
             float fps(1.0f / (ft / 1000.0f));
-            window->setTitle("FT: " + to_string(lastFrameTime) + " - FPS: " + to_string(fps));
+            // window->setTitle("FT: " + to_string(lastFrameTime) + " - FPS: " + to_string(fps));
         }
     }
 }

@@ -22,6 +22,7 @@ namespace FG
         Truck *truck;
         Truck *truck2;
         bool died;
+		Clock deadClock;
         FrameTime frameStep, frameSlice, lastFrameTime, currentSlice;        
     public:
         Game();

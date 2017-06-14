@@ -10,4 +10,4 @@
 
 #define WINDOW_TITLE "Frogger"
 
-#define DEAD_TIME 3.0f
+#define DEAD_TIME 1.0f
