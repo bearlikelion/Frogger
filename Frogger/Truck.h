@@ -11,6 +11,6 @@ namespace FG
     {
     public:
         Truck(float posX, float posY);
-        void move(sf::Vector2u size);
+        void update(sf::Vector2u size);
     };
 }

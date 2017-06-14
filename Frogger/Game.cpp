@@ -7,16 +7,15 @@ namespace FG
         window = new RenderWindow(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
         FrameTime frameSlice = 1.0f, frameStep = 1.0f, lastFrameTime = 0.0f, currentSlice = 0.0f;
 
-        bool died = false;
+        bool dead = false, win = false;
 		Clock deadClock;
 
         frog = new Frog(Vector2f(window->getSize()));
         // TODO: MULTIPLE TRUCKS
-        truck = new Truck(0, float(window->getSize().y / 2));
-        truck2 = new Truck(0, float(window->getSize().y / 2) - FROG_SIZE);
+        truck = new Truck(0, float(window->getSize().y / 2));        
     }
 
-    // input
+    // input phase
     void Game::input()
     {            
         Event event;
@@ -25,76 +24,57 @@ namespace FG
         {
             switch (event.type)
             {
-            case Event::Closed:
-                window->close();
+            case Event::Closed: window->close();
             case Event::KeyPressed:
-                if (Keyboard::Key::Escape == event.key.code) // TODO: PAUSE
-                {
-                    window->close();
-                }
-                else
-                {
-                    frog->update(event);
-                }
-                break;
+				// TODO: PAUSE
+                if (Keyboard::Key::Escape == event.key.code) window->close();                
+                else frog->update(event);                
+            break;
             }
         }
     }
 
-    // update
+    // update phase
     void Game::update()
     {                
         currentSlice += lastFrameTime;
         for (; currentSlice >= frameSlice; currentSlice--)
         {            
-            truck->move(window->getSize());
-            truck2->move(window->getSize());
+            truck->update(window->getSize());            
 
             // TODO: Collision class
-            if (frog->getShape().getGlobalBounds().intersects(truck->getShape().getGlobalBounds()))
+            if (frog->getShape().getGlobalBounds().intersects(truck->getShape().getGlobalBounds()) && dead == false)
             {
+				dead = true;
 				deadClock.restart();
-                died = true;
                 frog->reset();
-            }
-            else if (frog->getShape().getGlobalBounds().intersects(truck2->getShape().getGlobalBounds()))
-            {
+            }            
+			else if (frog->getShape().getPosition().y < 0 && win == false)
+			{
+				win = true;
 				deadClock.restart();
-                died = true;
-                frog->reset();
-            }
-            else if (frog->getShape().getPosition().y < 0) 
-            {
-                // TODO: WIN STATE
-                frog->reset();
-            }
+				frog->reset();
+			}
         }        
     }
 
-    // draw
+    // draw phase
     void Game::draw()
     {
         window->clear();            
 
-        truck->draw(*window);
-        truck2->draw(*window);        
+        truck->draw(*window);   
 
-		if (died == true)
+		if (dead == true)
 		{									
-			if (deadClock.getElapsedTime().asSeconds() <= DEAD_TIME)
-			{
-				cout << to_string(deadClock.getElapsedTime().asSeconds()) << endl;
-				frog->splat(*window);
-			}
-			else
-			{				
-				died = false;				
-			}
-		}
-		else
+			if (deadClock.getElapsedTime().asSeconds() <= DEAD_TIME) frog->splat(*window);
+			else dead = false;							
+		} 
+		else if (win == true)
 		{
-			frog->draw(*window);
-		}
+			if (deadClock.getElapsedTime().asSeconds() <= DEAD_TIME) frog->win(*window);
+			else win = false;
+		} else frog->draw(*window);
 
         window->display();
     }

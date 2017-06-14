@@ -19,9 +19,8 @@ namespace FG
     private:        
         RenderWindow *window;
         Frog *frog;
-        Truck *truck;
-        Truck *truck2;
-        bool died;
+        Truck *truck;        
+        bool dead, win;
 		Clock deadClock;
         FrameTime frameStep, frameSlice, lastFrameTime, currentSlice;        
     public:

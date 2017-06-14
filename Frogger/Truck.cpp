@@ -2,7 +2,7 @@
 
 namespace FG
 {
-    // TODO: Multiple trucks in one constructor
+    // TODO: Multiple trucks
     Truck::Truck(float posX, float posY)
     {
         shape.setSize(sf::Vector2f(120, 60));
@@ -13,7 +13,7 @@ namespace FG
         originalPosY = posY;
     }
 
-    void Truck::move(sf::Vector2u size)
+    void Truck::update(sf::Vector2u size)
     {        
         shape.move(float(TRUCK_SPEED), 0);
 
