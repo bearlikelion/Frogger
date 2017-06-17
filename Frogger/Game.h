@@ -15,19 +15,20 @@ using FrameTime = float;
 namespace FG
 {
     class Game
-    {
-    private:        
-        RenderWindow *window;
-        Frog *frog;
-        Truck *truck;        
-        bool dead, win;
-		Clock deadClock;
-        FrameTime frameStep, frameSlice, lastFrameTime, currentSlice;        
-    public:
+    {        
+    public:        
         Game();
+        
+        bool dead, win;
+        Clock deadClock;
+        RenderWindow *window;
+
         void input();
         void update();
         void draw();
         void run();
+    private:        
+        Frog *frog;
+        Truck *truck;                
     };
 }
