@@ -1,7 +1,7 @@
 #pragma once
 
-#define FROG_HOP 80
-#define FROG_SIZE 80
+#define FROG_HOP 40
+#define FROG_SIZE 40
 
 #define TRUCK_SPEED 0.75f
 

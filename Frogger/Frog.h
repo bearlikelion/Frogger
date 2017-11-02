@@ -2,7 +2,7 @@
 
 #include "Entity.h"
 
-namespace FG
+namespace fg
 {
     class Frog : public Entity
     {    

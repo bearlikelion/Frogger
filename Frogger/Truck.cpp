@@ -1,6 +1,6 @@
-#include "Truck.h"
+#include "Game.h"
 
-namespace FG
+namespace fg
 {
     // TODO: Multiple trucks
     Truck::Truck(float posX, float posY)

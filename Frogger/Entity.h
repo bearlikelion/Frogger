@@ -1,11 +1,10 @@
 #pragma once
 
 #include <SFML\Graphics.hpp>
-#include "DEFINITIONS.h"
 
 using namespace sf;
 
-namespace FG
+namespace fg
 {
     class Entity
     {

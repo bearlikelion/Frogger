@@ -1,6 +1,6 @@
-#include "Frog.h"
+#include "Game.h"
 
-namespace FG
+namespace fg
 {
 	Frog::Frog(sf::Vector2f size)
 	{

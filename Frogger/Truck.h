@@ -5,7 +5,7 @@
 
 using namespace std;
 
-namespace FG
+namespace fg
 {
     class Truck : public Entity
     {

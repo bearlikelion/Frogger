@@ -2,7 +2,7 @@
 
 RectangleShape shape;
 
-namespace FG
+namespace fg
 {
     Entity::Entity()
     {

@@ -2,7 +2,7 @@
 #include <chrono>
 #include <iostream>
 
-#include "DEFINITIONS.h"
+#include "CONSTANTS.h"
 #include "Frog.h"
 #include "Truck.h"
 
@@ -12,7 +12,7 @@ using namespace chrono;
 
 using FrameTime = float;
 
-namespace FG
+namespace fg
 {
     class Game
     {
@@ -28,6 +28,6 @@ namespace FG
         void input();
         void update();
         void draw();
-        void run();
+        void start();
     };
 }

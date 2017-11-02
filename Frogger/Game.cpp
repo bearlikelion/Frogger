@@ -1,6 +1,6 @@
 #include "Game.h"
 
-namespace FG
+namespace fg
 {
     Game::Game()
     {
@@ -12,7 +12,7 @@ namespace FG
 
         frog = new Frog(Vector2f(window->getSize()));
         // TODO: MULTIPLE TRUCKS
-        truck = new Truck(0, float(window->getSize().y / 2));        
+        truck = new Truck(0, float(window->getSize().y / 2));
     }
 
     // input phase
@@ -80,7 +80,7 @@ namespace FG
     }
 
     // Game loop
-    void Game::run()
+    void Game::start()
     {
         while (window->isOpen())
         {   
@@ -88,7 +88,7 @@ namespace FG
             time_point<steady_clock> startTime = steady_clock::now();
 
             Game::input();
-            Game::update(); // TODO: FRAME RATE UPDATE SLICING
+            Game::update();
             Game::draw();
 
             // End Frame
